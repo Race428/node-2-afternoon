@@ -2,13 +2,22 @@ let messages = []
 
 let id = 0 
 
+let name = 'Race'
+
 
 module.exports = {
   create: (req, res) => {
-    const {text,time} = req.body
+
+
+
+    let {text,time,} = req.body
+
+    text = `${name}-${text}`
+
     messages.push({id, text, time})
     id++
     res.status(200).send(messages)
+   
   },
   
   
@@ -25,7 +34,7 @@ module.exports = {
     
     messages[messageIndex] = { 
       id: message.id,
-      text: text || message.text,
+      text: `${name}- ${text}` || message.text,
       time: message.time,
     }
     res.status(200).send(messages)
